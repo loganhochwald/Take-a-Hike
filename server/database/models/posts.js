@@ -1,10 +1,9 @@
 const { DataTypes } = require("sequelize");
 const { db } = require("../index.js");
 
-const { Users }= require('../models/users.js');
 
-const Posts = db.define("users", {
-  id: {
+const Posts = db.define("posts", {
+  _id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
@@ -15,14 +14,14 @@ const Posts = db.define("users", {
   content: {
     type: DataTypes.STRING,
   },
+  user_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    foreignKey: true,
+    references: { model: 'users', key: '_id' }
+  },
 });
 
-// Applying a one to many relationship, users to posts
-Posts.associate = () => {
-  Posts.belongsTo(Users, {
-    foreignKey: 'creatorId'
-  })
-}
 
 // Export Schema
 module.exports = {
