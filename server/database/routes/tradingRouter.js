@@ -23,6 +23,10 @@ tradingRouter.get('/', async (req, res) => {
 
 // Add a new post to db
 tradingRouter.post('/:id', async (req, res) => {
+
+  // This works with Postman, but need to figure out how the team is storing their
+  // user data in passport to be able to work with the actual website
+  //Probably need to add a verifySession middleware
   try {
     const newInfo = {
       ...req.body,

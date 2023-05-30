@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const TradingNewPost = () => {
 
@@ -14,6 +15,10 @@ const TradingNewPost = () => {
     });
     console.log(postTexts)
   };
+
+  const handlePostSubmit = () => {
+    //Need to get the user data
+  }
 
 
   return (
