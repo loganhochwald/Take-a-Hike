@@ -12,15 +12,24 @@ const TradingMain = () => {
 
   return (
     <div>
-      <h1>Trading Main</h1>
-      <Link to='/tradingboard'>Trading Board</Link>
-      <Link to='/tradingpost'>Create New Post</Link>
+      <h3
+        className="content has-text-centered"
+        padding="20px 40px"
+        margin-left="40px"
+      >
+        Trading Post
+      </h3>
+      <div className="content has-text-centered">
+      <Link to='/tradingpost/tradingboard'>Trading Board</Link> |{' '}
+      <Link to='/tradingpost/createtrade'>Create New Post</Link>
+      </div>
 
       <Routes>
-        <Route path='tradingboard'element={ <TradingBoard /> }/>
-        <Route path='tradingpost' element={ <TradingNewPost /> }/>
+        <Route path='tradingpost/tradingboard' element={ <TradingBoard /> }/>
+        <Route path='tradingpost/createtrade' element={ <TradingNewPost /> }/>
       </Routes>
     </div>
+
   );
 }
 
