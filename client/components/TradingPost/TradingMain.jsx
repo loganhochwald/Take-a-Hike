@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-
-
-import TradingBoard from '../TradingPost/TradingBoard.jsx';
-import TradingNewPost from '../TradingPost/TradingNewPost.jsx';
 
 
 const TradingMain = () => {
