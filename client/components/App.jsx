@@ -12,6 +12,7 @@ import UserProfile from './UserProfile.jsx';
 import BirdingCheckList from './BirdingCheckList.jsx';
 import PackingList from './PackingList.jsx';
 import Login from './Login.jsx';
+import TradingMain from '../components/TradingPost/TradingMain.jsx';
 
 const App = () => {
   const [trailList, setTrailList] = useState([]);
@@ -63,6 +64,7 @@ const App = () => {
         {/* <Link to="/packinglist">Packing List</Link> |{" "} */}
         <Link to='/birdingchecklist'>Birding Checklist</Link> |{' '}
         <Link to='/profile'>User Profile</Link> |{' '}
+        <Link to='/tradingpost'>Trading Post</Link> {' '}
       </nav>
       {/* <Route path="login" element={<Login />} /> */}
       <Routes>
@@ -84,6 +86,7 @@ const App = () => {
         {/* <Route path="packinglist/:id" element={<PackingList />} /> */}
         <Route path='birdingchecklist' element={<BirdingCheckList />} />
         <Route path='profile' element={<UserProfile />} />
+        <Route path='tradingpost' element={<TradingMain />} />
       </Routes>
       <Outlet />
     </div>
