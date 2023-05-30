@@ -3,10 +3,60 @@ import React, { useState, useEffect } from 'react';
 const TradingNewPost = () => {
 
   return (
-    <div>
-    <h1>Trading New Post</h1>
+    <div className="new-trading-post">
+      <h1 className="Header" alignment="center">Sell Your Goods</h1>
+      <form className="box" onSubmit={ () => console.log('Submitted') }>
+
+        <div className="field">
+          <label className="label">Title</label>
+          <div className="control">
+            <input
+              type="text"
+              placeholder="Title"
+              className="card"
+              // value={ }
+              onChange={ () => console.log('Title Change') }
+              name="title"
+            />
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="label">Meetup Location</label>
+          <div className="control">
+            <input
+              type="text"
+              placeholder="Meetup Location"
+              className="card"
+              // value={ }
+              onChange={ () => console.log('Meetup Change') }
+              name="meetup-location"
+            />
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="label">Description</label>
+          <div className="control">
+            <input
+              type="text"
+              placeholder="Describe Your Goods"
+              className="card"
+              // value={ }
+              onChange={ () => console.log('Description Change') }
+              name="post-description"
+            />
+          </div>
+        </div>
+
+        <input
+          type="submit"
+          value="Send New Post"
+          className="button is-info is-rounded"
+        />
+      </form>
     </div>
-  )
+  );
 
 }
 
