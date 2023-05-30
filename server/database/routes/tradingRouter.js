@@ -35,7 +35,7 @@ tradingRouter.post('/:id', async (req, res) => {
       return res.sendStatus(409);
     }
 
-    const newPost = await Posts.create(newInfo);
+    await Posts.create(newInfo);
 
     res.sendStatus(201);
   } catch (error) {

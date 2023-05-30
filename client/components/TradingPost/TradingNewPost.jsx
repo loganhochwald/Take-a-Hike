@@ -5,7 +5,7 @@ const TradingNewPost = () => {
   const [postImg, setPostImg] = useState(null);
 
   const [postTexts, setPostTexts]
-  = useState({ title: '', location: '', description: '' });
+  = useState({ title: '', location: '', description: '', price: '' });
 
   const handlePostInput = (e) => {
     const { name, value } = e.target;
@@ -44,6 +44,21 @@ const TradingNewPost = () => {
               value={ postTexts.location }
               onChange={ handlePostInput }
               name="location"
+            />
+          </div>
+        </div>
+
+        <div className="field">
+          <label className="label">Price</label>
+          <div className="control">
+            <h8>$ </h8>
+            <input
+              type="text"
+              placeholder="Price"
+              className="card"
+              value={ postTexts.price }
+              onChange={ handlePostInput }
+              name="price"
             />
           </div>
         </div>
