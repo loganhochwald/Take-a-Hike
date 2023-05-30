@@ -59,14 +59,11 @@ const App = () => {
       >
         <Link to='/login'>Login</Link> |{' '}
         <Link to='/trailslist'>Trails List</Link> |{' '}
-        {/* <Link to="/trailprofile/1">Trail Profile</Link> |{' '} */}
         <Link to='/quartermaster'>Quartermaster</Link> |{' '}
-        {/* <Link to="/packinglist">Packing List</Link> |{" "} */}
         <Link to='/birdingchecklist'>Birding Checklist</Link> |{' '}
         <Link to='/profile'>User Profile</Link> |{' '}
         <Link to='/tradingpost'>Trading Post</Link> {' '}
       </nav>
-      {/* <Route path="login" element={<Login />} /> */}
       <Routes>
         <Route
           path='trailslist'
