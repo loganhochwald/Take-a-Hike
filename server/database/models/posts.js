@@ -18,7 +18,7 @@ const Posts = db.define("posts", {
     type: DataTypes.INTEGER,
     allowNull: false,
     foreignKey: true,
-    references: { model: 'users', key: '_id' }
+    references: { model: 'users', key: '_id' }  // One to many relationship with Users : Posts
   },
 });
 
