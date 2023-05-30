@@ -2,9 +2,22 @@ import React, { useState, useEffect } from 'react';
 
 const TradingNewPost = () => {
 
+  const [postImg, setPostImg] = useState(null);
+
+  const [postTexts, setPostTexts]
+  = useState({ title: '', location: '', description: '' });
+
+  const handlePostInput = (e) => {
+    const { name, value } = e.target;
+    setPostTexts((postTexts) => {
+      return { ...postTexts, [name]: value, [name]: value };
+    });
+    // console.log(postTexts)
+  };
+
+
   return (
     <div className="new-trading-post">
-      <h1 className="Header" alignment="center">Sell Your Goods</h1>
       <form className="box" onSubmit={ () => console.log('Submitted') }>
 
         <div className="field">
@@ -15,7 +28,7 @@ const TradingNewPost = () => {
               placeholder="Title"
               className="card"
               // value={ }
-              onChange={ () => console.log('Title Change') }
+              onChange={ handlePostInput }
               name="title"
             />
           </div>
@@ -29,8 +42,8 @@ const TradingNewPost = () => {
               placeholder="Meetup Location"
               className="card"
               // value={ }
-              onChange={ () => console.log('Meetup Change') }
-              name="meetup-location"
+              onChange={ handlePostInput }
+              name="location"
             />
           </div>
         </div>
@@ -51,8 +64,8 @@ const TradingNewPost = () => {
         placeholder="Describe Your Goods"
         className="card"
         // value={ }
-        onChange={() => console.log('Description Change')}
-        name="post-description"
+        onChange={ handlePostInput }
+        name="description"
         style={{ height: "80px", width: "200px" }}
       />
     </div>
