@@ -10,9 +10,9 @@ const TradingNewPost = () => {
   const handlePostInput = (e) => {
     const { name, value } = e.target;
     setPostTexts((postTexts) => {
-      return { ...postTexts, [name]: value, [name]: value };
+      return { ...postTexts, [name]: value, };
     });
-    // console.log(postTexts)
+    console.log(postTexts)
   };
 
 
@@ -27,7 +27,7 @@ const TradingNewPost = () => {
               type="text"
               placeholder="Title"
               className="card"
-              // value={ }
+              value={ postTexts.title }
               onChange={ handlePostInput }
               name="title"
             />
@@ -41,7 +41,7 @@ const TradingNewPost = () => {
               type="text"
               placeholder="Meetup Location"
               className="card"
-              // value={ }
+              value={ postTexts.location }
               onChange={ handlePostInput }
               name="location"
             />
@@ -63,7 +63,7 @@ const TradingNewPost = () => {
         type="text"
         placeholder="Describe Your Goods"
         className="card"
-        // value={ }
+        value={ postTexts.description }
         onChange={ handlePostInput }
         name="description"
         style={{ height: "80px", width: "200px" }}
