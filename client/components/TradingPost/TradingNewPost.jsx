@@ -36,23 +36,34 @@ const TradingNewPost = () => {
         </div>
 
         <div className="field">
-          <label className="label">Description</label>
-          <div className="control">
-            <input
-              type="text"
-              placeholder="Describe Your Goods"
-              className="card"
-              // value={ }
-              onChange={ () => console.log('Description Change') }
-              name="post-description"
-            />
-          </div>
-        </div>
+  <label className="label">Description</label>
+  <div className="control">
+    <div style={{ display: "flex" }}>
+      <input
+        type="image"
+        // src=""
+        width="80"
+        height="60"
+        style={{ marginRight: "8px" }}
+      />
+      <input
+        type="text"
+        placeholder="Describe Your Goods"
+        className="card"
+        // value={ }
+        onChange={() => console.log('Description Change')}
+        name="post-description"
+        style={{ height: "80px", width: "200px" }}
+      />
+    </div>
+  </div>
+</div>
+
 
         <input
           type="submit"
           value="Send New Post"
-          className="button is-info is-rounded"
+          className="button black-button"
         />
       </form>
     </div>
