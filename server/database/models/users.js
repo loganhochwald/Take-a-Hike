@@ -2,6 +2,8 @@
 const { DataTypes } = require("sequelize");
 const { db } = require("../index.js");
 
+const { Posts }= require('../models/posts.js');
+
 // Create Schema
 const Users = db.define("users", {
   googleId: {
@@ -33,6 +35,13 @@ const Users = db.define("users", {
   // name: { type: DataTypes.STRING(80), allowNull: false },
   // password: {Type: DataTypes.STRING, allowNull: false}, (SANTO!!!!!!)
 });
+
+// Applying a one to many relationship with posts for trading
+Users.associate = () => {
+  Users.hasMany(Posts, {
+    foreignKey: 'creatorId'
+  });
+}
 
 // Export Schema
 module.exports = {
