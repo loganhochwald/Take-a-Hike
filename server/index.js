@@ -50,6 +50,10 @@ app.use(passport.session());
 const successLoginUrl = 'http://localhost:5555/#/trailslist';
 const errorLoginUrl = 'http://localhost:5555/login/error';
 
+//Import Trading Routes
+const trading = require('./database/routes/tradingRouter.js');
+app.use('/trading', trading);
+
 //Auth Routes
 app.get(
   '/login/google',

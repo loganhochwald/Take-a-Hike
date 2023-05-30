@@ -10,9 +10,23 @@ const Posts = db.define("posts", {
   },
   title: {
     type: DataTypes.STRING,
+    allowNull: false
   },
-  content: {
+  location: {
     type: DataTypes.STRING,
+    allowNull: false
+  },
+  description: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  pictures: {
+    type: DataTypes.BLOB,
+    // allowNull: false
+  },
+  price: {
+    type: DataTypes.STRING,
+    allowNull: false
   },
   user_id: {
     type: DataTypes.INTEGER,
