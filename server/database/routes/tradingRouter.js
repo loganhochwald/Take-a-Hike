@@ -2,13 +2,27 @@ const express = require('express');
 const tradingRouter = express.Router();
 const { Posts } = require('../models/posts');
 
+// const verifySession = (req, res, next) => {
+
+//   const user = req.user;
+
+//   if (!user) {
+//     //could also redirect
+//     res.status(403).send('User not logged in');
+//   }
+
+//   res.send(user);
+
+//   //Invoking next should be enough
+//   next();
+// };
 
 // Retrieve all posts from db
 tradingRouter.get('/', async (req, res) => {
 
   try {
     const request = req;
-    res.send(req);
+    res.send(request);
 
   } catch (error) {
     res.status(500).send(error);

@@ -23,39 +23,37 @@ passport.use(new GoogleStrategy({
     picture: profile.photos[0].value,
     googleId: profile.id,
   }
- Users.findOrCreate({ where: { googleId: profile.id }, defaults: defaultUser })
-    .then(([user, created]) => {
-      if (created) {
-        console.log('New user created:', created);
-      } else {
-        console.log('User already exists:', created);
-      }
+  Users.findOrCreate({ where: { googleId: profile.id }, defaults: defaultUser })
+  .then(([user, created]) => {
+    if (created) {
+      console.log('New user created?', user);
+    }
 
-      if (user) {
-        return done(null, user);
-      }
-    })
-    .catch((error) => {
-      console.error('Google auth failed', error);
-    });
-
-}
-));
-
-passport.serializeUser((user, done) => {
-  // console.log("Serializing User:", user)
-  return done(null, user._id);
-});
-
-passport.deserializeUser(async(id, done) => {
-
-  const user = await Users.findOne({ where: { id } }).catch((err) => {
-    console.log("error deserializing", err);
-
-    if(user){
+    if (user) {
       return done(null, user);
     }
   })
-  return done(null, user);
+  .catch((error) => {
+    console.error('Google auth failed', error);
+  });
+}
+));
+
+passport.serializeUser((user, cb) => {
+  console.log("Serializing User with id:", user._id)
+  return cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+
+  Users.findOne({ where: { _id: id } })
+    .then((user) => {
+      console.log('Deserialized User:', user._id);
+      return cb(null, user._id);
+    })
+    .catch((error) => {
+      console.error('Error deserializing user:', error);
+      return cb(error);
+    });
 });
 

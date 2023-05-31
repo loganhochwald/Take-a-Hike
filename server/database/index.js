@@ -10,11 +10,11 @@ const db = new Sequelize("TakeAHike", "root", "", {
 });
 
 // Use Sequelize Authenticate Method
-db.sync({ alter: true })  // Alters the tables in the database to match the defined models
-  .then(() => {
-    console.log("Tables have been synchronized.");
-    db.authenticate();
-  })
+// db.sync({ alter: true })  // Alters the tables in the database to match the defined models
+//   .then(() => {
+    // console.log("Tables have been synchronized.");
+    db.authenticate()
+  // })
 
   .then(() => {
     console.log("Connection has been established successfully.");
