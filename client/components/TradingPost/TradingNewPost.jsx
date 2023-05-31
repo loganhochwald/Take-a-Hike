@@ -16,14 +16,33 @@ const TradingNewPost = () => {
     console.log(postTexts)
   };
 
-  const handlePostSubmit = () => {
-    //Need to get the user data
+  const handlePostSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const newPost = {
+        ...postTexts,
+      };
+
+      await axios.post('/trading', newPost);
+      console.log('New post submitted successfully!');
+      // Reset form after successful submission
+      setPostTexts({
+        title: '',
+        location: '',
+        description: '',
+        price: '',
+      });
+    } catch (error) {
+      console.error("new post not submitted", error);
+      // Handle error state or display error message
+    }
   }
 
 
   return (
     <div className="new-trading-post">
-      <form className="box" onSubmit={ () => console.log('Submitted') }>
+      <form className="box" onSubmit={ handlePostSubmit }>
 
         <div className="field">
           <label className="label">Title</label>
