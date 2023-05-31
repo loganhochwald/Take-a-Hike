@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useParams, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const TradeDisplay = () => {
   const location = useLocation();
-  console.log(location, " useLocation Hook");
-  console.log(location.state.thisPost, " passed down state");
 
   const [post, setPost] = useState(location.state?.thisPost);
 
-  console.log(post);
-
-
   return (
-    <div>
-    </div>
+<div className='list-item-card'>
+  <h1>{post.title}</h1>
+  <h2>Price: {post.price}</h2>
+  <p>Location: {post.location}</p>
+  <p>{post.description}</p>
+</div>
   );
 }
 

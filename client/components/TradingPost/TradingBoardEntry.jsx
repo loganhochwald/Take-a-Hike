@@ -6,7 +6,7 @@ const TradingBoardEntry = ({ post }) => {
 
   const[thisPost, setThisPost] = useState(post);
 
-  const link = `/tradingpost/tradingboard/${thisPost._id}`;
+  const link = `/tradingpost/trade/${thisPost._id}`;
 
 
   return (
