@@ -74,19 +74,19 @@ app.get(
 );
 
 //Middleware to check if user is logged in on every request
-// const isAuthenticated = (req, res, next) => {
-//   if(req.user) {
-//     console.log('User authenticated', req.user)
-//     return next();
-//   }
-//   else {
-//     return res.status(401).send({
-//       error: 'User not authenticated'
-//      })
-//   }
-// }
+const isAuthenticated = (req, res, next) => {
+  if(req.user) {
+    console.log('User authenticated', req.user)
+    return next();
+  }
+  else {
+    return res.status(401).send({
+      error: 'User not authenticated'
+     })
+  }
+}
 
-// app.use(isAuthenticated)
+app.use(isAuthenticated)
 
 
 //Import Trading Routes
