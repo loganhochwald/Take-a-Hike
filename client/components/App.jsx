@@ -49,7 +49,7 @@ const App = () => {
       <div className='app__header'>
         <img
           className='app__logo'
-          src='https://res.cloudinary.com/dbwbxubwi/image/upload/v1649015216/Parc%20des%20Familles%20Trail%20by%20NOMAMBO/qoej8fkfe2og2gkdkpmn.png'
+          // src='https://res.cloudinary.com/dbwbxubwi/image/upload/v1649015216/Parc%20des%20Familles%20Trail%20by%20NOMAMBO/qoej8fkfe2og2gkdkpmn.png'
         />
         <h1 className='Header app__header' alignment='center'>
           Trail Feathers
