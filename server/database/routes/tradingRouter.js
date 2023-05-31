@@ -24,16 +24,13 @@ tradingRouter.get('/', async (req, res) => {
 // Add a new post to db
 tradingRouter.post('/', async (req, res) => {
 
-  // This works with Postman, but need to figure out how the team is storing their
-  // user data in passport to be able to work with the actual website
-  //Probably need to add a verifySession
 
 
   try {
 
-    const userId = req.user;
-    console.log(userId)
-    res.send(userId);
+    const request = req;
+    console.log(request);
+    res.send(request);
     // const newInfo = {
     //   ...req.body,
     //   user_id: req.params.id
@@ -49,7 +46,7 @@ tradingRouter.post('/', async (req, res) => {
 
     // res.sendStatus(201);
   } catch (error) {
-    console.error(error);
+    console.error(error)
     res.status(500).send(error);
   }
 });

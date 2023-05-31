@@ -5,6 +5,7 @@ const { query } = require('express');
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
+require('dotenv').config();
 
 const { BirdList } = require("./database/models/birdList.js")
 const { BirdSightings } = require("./database/models/birdSightings.js")
@@ -31,27 +32,27 @@ const distPath = path.resolve(__dirname, "..", "dist"); //serves the hmtl file o
 // Create backend API
 const app = express();
 
-// Use Middleware
+///////////////////////////////////////// Use Middleware ////////////////////////////
+
 app.use(express.json()); // handles parsing content in the req.body from post/update requests
 app.use(express.static(distPath)); // Statically serves up client directory
 app.use(express.urlencoded({ extended: true })); // Parses url (allows arrays and objects)
+
+// defining the session options for the middleware
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: [process.env.SESSION_ID_COOKIE], //needs to be in an .env file and imported
     resave: false,
     saveUninitialized: false,
+    store: new session.MemoryStore(), // session is stored using the express-session storage
   })
 );
-app.use(passport.initialize());
-// Create API Routes
-app.use(passport.session());
+app.use(passport.initialize()); //passport is used on every call
+app.use(passport.session());  //passport uses express-session
+
 
 const successLoginUrl = 'http://localhost:5555/#/trailslist';
 const errorLoginUrl = 'http://localhost:5555/login/error';
-
-//Import Trading Routes
-const trading = require('./database/routes/tradingRouter.js');
-app.use('/trading', trading);
 
 //Auth Routes
 app.get(
@@ -72,6 +73,26 @@ app.get(
   }
 );
 
+//Middleware to check if user is logged in on every request
+// const isAuthenticated = (req, res, next) => {
+//   if(req.user) {
+//     console.log('User authenticated', req.user)
+//     return next();
+//   }
+//   else {
+//     return res.status(401).send({
+//       error: 'User not authenticated'
+//      })
+//   }
+// }
+
+// app.use(isAuthenticated)
+
+
+//Import Trading Routes
+const trading = require('./database/routes/tradingRouter.js');
+
+app.use('/trading', trading);
 app.get("/profile",(req, res) => {
   Users.findOne()
     .then((data) => {

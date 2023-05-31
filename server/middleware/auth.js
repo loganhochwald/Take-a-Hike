@@ -29,11 +29,6 @@ passport.use(new GoogleStrategy({
     // console.log(user.dataValues)
     const userData = user.dataValues;
 
-    if (created) {
-      console.log('User created:', userData);
-    } else {
-      console.log('User already exists:', userData);
-    }
     return done(null, userData);
 
 
@@ -42,15 +37,16 @@ passport.use(new GoogleStrategy({
     return done(error);
   }
 
-
 }
-));
+)); // This returned user will be passed to serializeUser by passport's Strategy framework
 
+// Gets the user from the req object, all done by passport you can sit back and relax (req.session.passport.user)
 passport.serializeUser((user, cb) => {
   console.log("Serializing User:", user)
   return cb(null, user);
 });
 
+// Attaches the user object to req.user because it's authenticating the user, should be able to call req.user for the returned obj now
 passport.deserializeUser((req, user, done) => {
 
   Users.findOne({ where: { _id: user._id } })
