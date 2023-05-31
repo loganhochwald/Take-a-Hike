@@ -12,15 +12,17 @@ const { BirdSightings } = require("./database/models/birdSightings.js")
 const { PackingLists } = require("./database/models/packingLists");
 const { PackingListItems } = require("./database/models/packingListItems");
 
-// const { default: PackingList } = require("../client/components/PackingList");
 const router = express.Router();
 const session = require('express-session');
 require('./middleware/auth.js');
 const { cloudinary } = require('./utils/coudinary');
 const { Users } = require('./database/models/users');
 
+// // Import session storage
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
 // // Import DB
-// const { db } = require('./database/index.js')
+const { db } = require('./database/index.js')
 
 // // Import Routes
 // const birdListRouter = require('./database/routes/birdListRouter.js')
@@ -38,13 +40,20 @@ app.use(express.json()); // handles parsing content in the req.body from post/up
 app.use(express.static(distPath)); // Statically serves up client directory
 app.use(express.urlencoded({ extended: true })); // Parses url (allows arrays and objects)
 
+// session storage declaration
+const sessionStore = new SequelizeStore({
+  db: db,
+  modelKey: 'sid', // sid = Session ID, stores this as the key so it's quick to grab the session data
+  expiration: 24 * 60 * 60 * 1000, // Set the session expiration time to 24 hours, removes it from the database so session data stays clean
+});
+
 // defining the session options for the middleware
 app.use(
   session({
-    secret: [process.env.SESSION_ID_COOKIE], //needs to be in an .env file and imported
-    resave: false,
-    saveUninitialized: false,
-    store: new session.MemoryStore(), // session is stored using the express-session storage
+    secret: [process.env.SESSION_ID_COOKIE], // needs to be in an .env file and imported
+    resave: false, // does not save session if it hasn't been modified
+    saveUninitialized: false, // session only saves if it has been modified
+    store: sessionStore, // session is stored using the connect-session-sequelize package
   })
 );
 app.use(passport.initialize()); //passport is used on every call
@@ -73,7 +82,7 @@ app.get(
   }
 );
 
-//Middleware to check if user is logged in on every request
+// Middleware to check if user is logged in on every request
 const isAuthenticated = (req, res, next) => {
   if(req.user) {
     console.log('User authenticated', req.user)
@@ -86,13 +95,16 @@ const isAuthenticated = (req, res, next) => {
   }
 }
 
-app.use(isAuthenticated)
+app.use(isAuthenticated) // using the function above in middleware
+
+///////////////////////////////////////////////////////////////////////////
 
 
-//Import Trading Routes
+// // Import Trading Routes
 const trading = require('./database/routes/tradingRouter.js');
-
 app.use('/trading', trading);
+
+
 app.get("/profile",(req, res) => {
   Users.findOne()
     .then((data) => {
