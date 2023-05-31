@@ -13,7 +13,7 @@ const TradingNewPost = () => {
     setPostTexts((postTexts) => {
       return { ...postTexts, [name]: value, };
     });
-    console.log(postTexts)
+    // console.log(postTexts)
   };
 
   const handlePostSubmit = async (e) => {
@@ -25,8 +25,9 @@ const TradingNewPost = () => {
       };
 
       await axios.post('/trading', newPost);
-      console.log('New post submitted successfully!');
-      // Reset form after successful submission
+      console.log('Submitted New Post!');
+
+      // Reset the form instead of refreshing the page
       setPostTexts({
         title: '',
         location: '',
@@ -34,8 +35,7 @@ const TradingNewPost = () => {
         price: '',
       });
     } catch (error) {
-      console.error("new post not submitted", error);
-      // Handle error state or display error message
+      console.error("Could not submit new post", error);
     }
   }
 
@@ -43,7 +43,6 @@ const TradingNewPost = () => {
   return (
     <div className="new-trading-post">
       <form className="box" onSubmit={ handlePostSubmit }>
-
         <div className="field">
           <label className="label">Title</label>
           <div className="control">

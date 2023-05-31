@@ -24,6 +24,7 @@ tradingRouter.get('/', async (req, res) => {
 // Add a new post to db
 tradingRouter.post('/', async (req, res) => {
   // req.user should have a user object with the id being _id: <user id number>
+
   try {
 
     const newInfo = {
