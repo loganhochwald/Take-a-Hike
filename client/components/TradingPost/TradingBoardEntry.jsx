@@ -10,9 +10,9 @@ const TradingBoardEntry = ({ post }) => {
 
 
   return (
-    <div>
-      <h1>{thisPost._id}</h1>
+    <div className='list-item-card'>
       <Link to={link} state={{ thisPost: thisPost }} className="link">{post.title}</Link>
+      <h2>{ thisPost.price }</h2>
       <Outlet />
     </div>
   );

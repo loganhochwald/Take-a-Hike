@@ -25,7 +25,6 @@ const TradingBoard = () => {
 
   return (
     <div>
-      <h1>Trading Board</h1>
       { posts && posts.map((post) => {
         return <TradingBoardEntry key={ post._id } post={ post } />
       })
