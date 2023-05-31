@@ -23,28 +23,24 @@ tradingRouter.get('/', async (req, res) => {
 
 // Add a new post to db
 tradingRouter.post('/', async (req, res) => {
-
-
+  // req.user should have a user object with the id being _id: <user id number>
 
   try {
 
-    const request = req;
-    console.log(request);
-    res.send(request);
-    // const newInfo = {
-    //   ...req.body,
-    //   user_id: req.params.id
-    // };
+    const newInfo = {
+      ...req.body,
+      user_id: req.user._id
+    };
 
-    // const exists = await Posts.findOne({ where: newInfo });
+    const exists = await Posts.findOne({ where: newInfo });
 
-    // if (exists) {
-    //   return res.sendStatus(409);
-    // }
+    if (exists) {
+      return res.sendStatus(409);
+    }
 
-    // await Posts.create(newInfo);
+    await Posts.create(newInfo);
 
-    // res.sendStatus(201);
+    res.sendStatus(201);
   } catch (error) {
     console.error(error)
     res.status(500).send(error);
