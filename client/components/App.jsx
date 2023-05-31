@@ -16,6 +16,7 @@ import Login from './Login.jsx';
 import TradingMain from '../components/TradingPost/TradingMain.jsx';
 import TradingBoard from './TradingPost/TradingBoard.jsx';
 import TradingNewPost from './TradingPost/TradingNewPost.jsx';
+import TradeDisplay from './TradingPost/TradeDisplay.jsx';
 
 const App = () => {
   const [trailList, setTrailList] = useState([]);
@@ -88,6 +89,7 @@ const App = () => {
         <Route path='tradingpost' element={<TradingMain />} >
           <Route path='tradingboard' element={<TradingBoard />}/>
           <Route path='createtrade' element={<TradingNewPost />}/>
+          <Route path="tradingboard/:postId" element={<TradeDisplay />} />
         </Route>
       </Routes>
       <Outlet />
