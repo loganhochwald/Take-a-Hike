@@ -51,11 +51,11 @@ passport.deserializeUser((req, user, done) => {
 
   Users.findOne({ where: { _id: user._id } })
     .then((user) => {
-      console.log('Deserialized User:', user.dataValues);
+      // console.log('Deserialized User:', user.dataValues);
       return done(null, user.dataValues);
     })
     .catch((error) => {
-      console.error('Error deserializing user:', error);
+      // console.error('Error deserializing user:', error);
       return done(error);
     });
 });

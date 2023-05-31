@@ -82,14 +82,20 @@ app.get(
   }
 );
 
-// Middleware to check if user is logged in on every request
+app.post('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/#/login');
+});
+
+
+// // Middleware to check if user is logged in on every request
 const isAuthenticated = (req, res, next) => {
   if(req.user) {
     console.log('User authenticated', req.user)
     return next();
   }
   else {
-    return res.status(401).redirect('#/login');
+    return res.status(401).send('User not authenticated');
   }
 }
 
@@ -101,7 +107,6 @@ app.use(isAuthenticated) // using the function above in middleware
 // // Import Trading Routes
 const trading = require('./database/routes/tradingRouter.js');
 app.use('/trading', trading);
-
 
 app.get("/profile",(req, res) => {
   Users.findOne()
