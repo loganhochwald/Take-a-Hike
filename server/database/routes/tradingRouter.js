@@ -7,13 +7,8 @@ const { Posts } = require('../models/posts');
 tradingRouter.get('/', async (req, res) => {
 
   try {
-    const posts = await Posts.findAll();
-
-    if(!posts) {
-      res.sendStatus(404);
-    }
-
-    res.status(200).send(posts);
+    const request = req;
+    res.send(req);
 
   } catch (error) {
     res.status(500).send(error);
@@ -26,7 +21,7 @@ tradingRouter.post('/:id', async (req, res) => {
 
   // This works with Postman, but need to figure out how the team is storing their
   // user data in passport to be able to work with the actual website
-  //Probably need to add a verifySession middleware
+  //Probably need to add a verifySession
   try {
     const newInfo = {
       ...req.body,

@@ -17,41 +17,45 @@ passport.use(new GoogleStrategy({
   passReqToCallback: true
 },
   async (req, accessToken, refreshToken, profile, done) => {
-  // console.log(20, "profile\n", profile)
   const defaultUser = {
     fullName: `${profile.name.givenName} ${profile.name.familyName}`,
     email: profile.emails[0].value,
     picture: profile.photos[0].value,
     googleId: profile.id,
   }
+ Users.findOrCreate({ where: { googleId: profile.id }, defaults: defaultUser })
+    .then(([user, created]) => {
+      if (created) {
+        console.log('New user created:', created);
+      } else {
+        console.log('User already exists:', created);
+      }
 
-  const user = await Users.findOrCreate({ where: { googleId: profile.id }, defaults: defaultUser})
-    .then(() => console.log('User added to database'))
-    .catch((err) => {
-      console.log("Error logging on", err)
-      done(err, null)
-  });
+      if (user) {
+        return done(null, user);
+      }
+    })
+    .catch((error) => {
+      console.error('Google auth failed', error);
+    });
 
-  if(user && user[0]){
-    return done(null, user && user[0])
-  }
 }
 ));
 
 passport.serializeUser((user, done) => {
   // console.log("Serializing User:", user)
-  done(null, user._id);
+  return done(null, user._id);
 });
 
 passport.deserializeUser(async(id, done) => {
-  
+
   const user = await Users.findOne({ where: { id } }).catch((err) => {
     console.log("error deserializing", err);
 
     if(user){
-      done(null, user);
+      return done(null, user);
     }
   })
-  done(null, user);
+  return done(null, user);
 });
 
