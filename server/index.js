@@ -89,9 +89,7 @@ const isAuthenticated = (req, res, next) => {
     return next();
   }
   else {
-    return res.status(401).send({
-      error: 'User not authenticated'
-     })
+    return res.status(401).redirect('#/login');
   }
 }
 
