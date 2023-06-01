@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import axios from 'axios';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 
 // import './styles/main.css';
 import TrailsList from './TrailsList.jsx';
@@ -19,14 +19,23 @@ import TradingNewPost from './TradingPost/TradingNewPost.jsx';
 import TradeDisplay from './TradingPost/TradeDisplay.jsx';
 
 const App = () => {
+
+  const [userId, setUserId] = useState(null);
   const [trailList, setTrailList] = useState([]);
 
+
   useEffect(() => {
+  
     if (localStorage.getItem('TrailList')) {
       const trails = JSON.parse(localStorage.getItem('TrailList'));
       setTrailList(trails);
     }
   }, []);
+
+  useEffect(() => {
+  
+ console.log(userId);
+  }, [userId]);
 
   // were in trail list
   const handleGetTrails = (location) => {
@@ -49,6 +58,7 @@ const App = () => {
       <div className='app__header'>
         <img
           className='app__logo'
+          //Commented out to save space on cloudinary for now
           // src='https://res.cloudinary.com/dbwbxubwi/image/upload/v1649015216/Parc%20des%20Familles%20Trail%20by%20NOMAMBO/qoej8fkfe2og2gkdkpmn.png'
         />
         <h1 className='Header app__header' alignment='center'>
@@ -85,7 +95,8 @@ const App = () => {
         />
         <Route path='quartermaster' element={<Quartermaster />} />
         <Route path='birdingchecklist' element={<BirdingCheckList />} />
-        <Route path='profile' element={<UserProfile />} />
+        <Route path='/profile' element={<UserProfile />} />
+        <Route path='/profile/:id' element={<UserProfile setUserId={ setUserId }/>} />
         <Route path='tradingpost' element={<TradingMain />} >
           <Route path='tradingboard' element={<TradingBoard />}/>
           <Route path='createtrade' element={<TradingNewPost />}/>

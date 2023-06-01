@@ -60,7 +60,7 @@ app.use(passport.initialize()); //passport is used on every call
 app.use(passport.session());  //passport uses express-session
 
 
-const successLoginUrl = 'http://localhost:5555/#/trailslist';
+const successLoginUrl = 'http://localhost:5555/#/profile';
 const errorLoginUrl = 'http://localhost:5555/login/error';
 
 //Auth Routes
@@ -74,12 +74,10 @@ app.get(
   passport.authenticate('google', {
     failureMessage: 'cannot login to Google',
     failureRedirect: errorLoginUrl,
-    successRedirect: successLoginUrl,
   }),
   (req, res) => {
-    console.log('User: ', req.user);
-    res.send('thank you for signing in!');
-  }
+    const userId = req.user._id;
+    res.redirect(`${successLoginUrl}/${userId}`);  }
 );
 
 app.post('/logout', function(req, res) {
