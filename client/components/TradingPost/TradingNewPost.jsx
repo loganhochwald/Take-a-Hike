@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 
-const TradingNewPost = () => {
+const TradingNewPost = ({ userId }) => {
+
+  const navigate = useNavigate();
 
   const [postImg, setPostImg] = useState(null);
+  const [user, setUser] = useState(null);
+
 
   const [postTexts, setPostTexts]
   = useState({ title: '', location: '', description: '', price: '' });
@@ -38,6 +44,25 @@ const TradingNewPost = () => {
       console.error("Could not submit new post", error);
     }
   }
+
+
+  const getUserObj = () => {
+    axios.get("/user").then((response) => {
+      const user = response.data;
+      console.log(user);
+      setUser(user);
+    })
+    .catch((error) => {
+      console.log("Need to be signed in to create a post!");
+      navigate('/login');
+    })
+  }
+
+  useEffect (() => {
+    getUserObj();
+
+  }, [])
+
 
 
   return (

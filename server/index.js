@@ -74,10 +74,11 @@ app.get(
   passport.authenticate('google', {
     failureMessage: 'cannot login to Google',
     failureRedirect: errorLoginUrl,
+    successRedirect: successLoginUrl
   }),
   (req, res) => {
-    const userId = req.user._id;
-    res.redirect(`${successLoginUrl}/${userId}`);  }
+    res.send("Hello, you.");
+  }
 );
 
 app.post('/logout', function(req, res) {
@@ -118,6 +119,17 @@ app.get("/profile",(req, res) => {
     });
 });
 
+// Getting the user object on the request and sending it to the client side
+app.get('/user', async (req, res) => {
+  try {
+    const user = req.user;
+    if(user) {
+      res.status(200).send(user);
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 ////////////////////////////////////////EXTERNAL TRAIL API ROUTE/////////////////////////////////////////
 
 //GET req for trail data by latitude/longitude

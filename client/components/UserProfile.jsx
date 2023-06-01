@@ -9,26 +9,8 @@ const UserProfile = ({ setUserId }) => {
   const [picture, setPicture] = useState("");
   const [email, setEmail] = useState("");
 
-  const params = useParams();
-
-
-  // const { userId } = useParams;
-  // console.log(userId);
-  const getParams = () => {
-    // console.log(params);
-    //   // console.log(Object.values(params)[0].split('/')[1])
-    //   console.log(params.id)
-
-      if(params.id) {
-        setUserId(params.id);
-      }
-
-  }
-
-
 
   useEffect(() => {
-    getParams();
     axios.get("/profile").then((profile) => {
       const user = profile.data;
       // console.log(user);
@@ -36,7 +18,7 @@ const UserProfile = ({ setUserId }) => {
       setPicture(user.picture);
       setEmail(user.email);
     });
-  });
+  }, []);
 
 
   return (

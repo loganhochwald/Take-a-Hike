@@ -20,7 +20,6 @@ import TradeDisplay from './TradingPost/TradeDisplay.jsx';
 
 const App = () => {
 
-  const [userId, setUserId] = useState(null);
   const [trailList, setTrailList] = useState([]);
 
 
@@ -31,11 +30,7 @@ const App = () => {
       setTrailList(trails);
     }
   }, []);
-
-  useEffect(() => {
   
- console.log(userId);
-  }, [userId]);
 
   // were in trail list
   const handleGetTrails = (location) => {
@@ -96,7 +91,7 @@ const App = () => {
         <Route path='quartermaster' element={<Quartermaster />} />
         <Route path='birdingchecklist' element={<BirdingCheckList />} />
         <Route path='/profile' element={<UserProfile />} />
-        <Route path='/profile/:id' element={<UserProfile setUserId={ setUserId }/>} />
+        <Route path='/profile/:id' element={<UserProfile />} />
         <Route path='tradingpost' element={<TradingMain />} >
           <Route path='tradingboard' element={<TradingBoard />}/>
           <Route path='createtrade' element={<TradingNewPost />}/>
