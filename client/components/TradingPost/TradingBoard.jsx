@@ -16,7 +16,7 @@ const TradingBoard = () => {
   const getPosts = async () => {
     try {
       const allPosts = await axios.get('/trading');
-      setPosts(allPosts.data);
+      setPosts(allPosts.data.reverse());
 
     } catch (error) {
       console.error("Could not get posts", error);
@@ -28,7 +28,7 @@ const TradingBoard = () => {
       { posts && posts.map((post) => {
         return <TradingBoardEntry key={ post._id } post={ post } />
       })
-}
+      }
     </div>
   )
 }

@@ -101,40 +101,40 @@ const TradingNewPost = ({ userId }) => {
         </div>
 
         <div className="field">
-  <label className="label">Price</label>
-  <div className="control">
-    <div style={{ display: "flex", alignItems: "center" }}>
-    <h6 style={{ marginRight: "2px" }}>$</h6>
-    <input
-        type="text"
-        placeholder="Price"
-        className="card"
-        value={postTexts.price}
-        onChange={handlePostInput}
-        name="price"
-      />
-    </div>
-  </div>
-</div>
+          <label className="label">Price</label>
+          <div className="control">
+          <div style={{ display: "flex", alignItems: "center" }}>
+          <h6 style={{ marginRight: "2px" }}>$</h6>
+            <input
+                type="text"
+                placeholder="Price"
+                className="card"
+                value={postTexts.price}
+                onChange={handlePostInput}
+                name="price"
+              />
+        </div>
+        </div>
+        </div>
 
 
         <div className="field">
-  <label className="label">Description</label>
-  <div className="control">
-    <div style={{ display: "flex" }}>
-      <input
-        type="text"
-        placeholder="Describe Your Goods"
-        className="card"
-        value={ postTexts.description }
-        onChange={ handlePostInput }
-        name="description"
-        style={{ height: "80px", width: "200px" }}
-      />
-    </div>
-    <TradeNewPhoto user={ user } uploadedPhoto={ uploadedPhoto } setUploadedPhoto={ setUploadedPhoto }/>
-  </div>
-</div>
+          <label className="label">Description</label>
+          <div className="control">
+            <div style={{ display: "flex" }}>
+              <input
+                type="text"
+                placeholder="Describe Your Goods"
+                className="card"
+                value={ postTexts.description }
+                onChange={ handlePostInput }
+                name="description"
+                style={{ height: "80px", width: "200px" }}
+              />
+            </div>
+            <TradeNewPhoto user={ user } uploadedPhoto={ uploadedPhoto } setUploadedPhoto={ setUploadedPhoto }/>
+          </div>
+        </div>
 
 
         <input
@@ -143,7 +143,6 @@ const TradingNewPost = ({ userId }) => {
           className="button black-button"
         />
       </form>
-    {/* <TradeNewPhoto user={ user }/> */}
     </div>
   );
 
