@@ -25,12 +25,18 @@ const TradingBoard = () => {
 
   return (
     <div>
-      { posts && posts.map((post) => {
-        return <TradingBoardEntry key={ post._id } post={ post } />
-      })
-      }
+      {posts.length > 0 ? (
+        posts.map((post) => (
+          <TradingBoardEntry key={post._id} post={post} />
+        ))
+      ) : (
+        <div className='list-item-card'>
+          <p>No trades! Post a new one!</p>
+        </div>
+        )}
     </div>
-  )
+  );
+
 }
 
 export default TradingBoard;
