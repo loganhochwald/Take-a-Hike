@@ -1,39 +1,47 @@
-import React from 'react';
-
-const cloudName = ""; // replace with your own cloud name
-const uploadPreset = ""; // replace with your own upload preset
-
+import React, { useState } from 'react';
 
 const TradeNewPhoto = ({ postTexts, user }) => {
 
-  if(user !== null) {
-    console.log(user._id)
+  // My specific presets, need to hide from client side using dotenv-webpack plugin
+const cloudName = process.env.CLOUDINARY_NAME;
+const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET;
+console.log(cloudName, uploadPreset)
 
-  }
-  const myWidget = cloudinary.createUploadWidget(
-    {
-      cloudName: cloudName,
-      uploadPreset: uploadPreset,
-      maxFiles: 3,  //restrict upload to three images
-      folder: "trade_images", //upload files to the specified folder
-      tags: [`user: ${ user._id }`], //add the given tags to the uploaded files
-      maxImageFileSize: 2000000,  //restrict file size to less than 2MB
-      maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
-    },
-    (error, result) => {
-      if (!error && result && result.event === "success") {
-        console.log("Done! Here is the image info: ", result.info);
+
+  const [uploadedPhoto, setUploadedPhoto] = useState(null);
+
+  const showWidget = () => {
+    const myWidget = window.cloudinary.createUploadWidget(
+      {
+        cloudName: cloudName,
+        uploadPreset: uploadPreset,
+        maxFiles: 3,
+        folder: "trade_images",
+        tags: [`user:${user._id}`],
+        maxImageFileSize: 2000000,
+        maxImageWidth: 2000,
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          console.log("Image posted to cloudify: ", result.info);
+          setUploadedPhoto(result.info.secure_url);
+        }
       }
-    }
-  );
-  const showWidget = (event, widget) => {
-    event.preventDefault();
-    widget.open();
+    );
+    myWidget.open();
   };
 
+  // style={{ width: '250px' }}
+
   return (
-    <h1>Insert Photo Here</h1>
-  )
-}
+    <div>
+      {uploadedPhoto && (
+        <img src={uploadedPhoto} />
+      )}
+
+      <button id="upload-cloudify-button" onClick={ showWidget }>Upload Trade Images</button>
+    </div>
+  );
+};
 
 export default TradeNewPhoto;
