@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
+import TradeNewPhoto from './TradeNewPhoto.jsx';
+
+
 const TradingNewPost = ({ userId }) => {
 
   const navigate = useNavigate();
@@ -142,6 +145,7 @@ const TradingNewPost = ({ userId }) => {
           className="button black-button"
         />
       </form>
+    <TradeNewPhoto user={ user }/>
     </div>
   );
 

@@ -4,7 +4,12 @@ const cloudName = ""; // replace with your own cloud name
 const uploadPreset = ""; // replace with your own upload preset
 
 
-const TradeNewPhoto = ({ postTexts }) => {
+const TradeNewPhoto = ({ postTexts, user }) => {
+
+  if(user !== null) {
+    console.log(user._id)
+
+  }
   const myWidget = cloudinary.createUploadWidget(
     {
       cloudName: cloudName,
@@ -25,6 +30,10 @@ const TradeNewPhoto = ({ postTexts }) => {
     event.preventDefault();
     widget.open();
   };
+
+  return (
+    <h1>Insert Photo Here</h1>
+  )
 }
 
 export default TradeNewPhoto;
