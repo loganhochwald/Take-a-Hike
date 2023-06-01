@@ -10,7 +10,7 @@ const TradingNewPost = ({ userId }) => {
 
   const navigate = useNavigate();
 
-  const [postImg, setPostImg] = useState(null);
+  const [uploadedPhoto, setUploadedPhoto] = useState(null);
   const [user, setUser] = useState(null);
 
 
@@ -31,6 +31,7 @@ const TradingNewPost = ({ userId }) => {
     try {
       const newPost = {
         ...postTexts,
+        pictures: uploadedPhoto,
       };
 
       await axios.post('/trading', newPost);
@@ -100,31 +101,27 @@ const TradingNewPost = ({ userId }) => {
         </div>
 
         <div className="field">
-          <label className="label">Price</label>
-          <div className="control">
-            <h8>$ </h8>
-            <input
-              type="text"
-              placeholder="Price"
-              className="card"
-              value={ postTexts.price }
-              onChange={ handlePostInput }
-              name="price"
-            />
-          </div>
-        </div>
+  <label className="label">Price</label>
+  <div className="control">
+    <div style={{ display: "flex", alignItems: "center" }}>
+    <h6 style={{ marginRight: "2px" }}>$</h6>
+    <input
+        type="text"
+        placeholder="Price"
+        className="card"
+        value={postTexts.price}
+        onChange={handlePostInput}
+        name="price"
+      />
+    </div>
+  </div>
+</div>
+
 
         <div className="field">
   <label className="label">Description</label>
   <div className="control">
     <div style={{ display: "flex" }}>
-      <input
-        type="image"
-        // src=""
-        width="80"
-        height="60"
-        style={{ marginRight: "8px" }}
-      />
       <input
         type="text"
         placeholder="Describe Your Goods"
@@ -135,6 +132,7 @@ const TradingNewPost = ({ userId }) => {
         style={{ height: "80px", width: "200px" }}
       />
     </div>
+    <TradeNewPhoto user={ user } uploadedPhoto={ uploadedPhoto } setUploadedPhoto={ setUploadedPhoto }/>
   </div>
 </div>
 
@@ -145,7 +143,7 @@ const TradingNewPost = ({ userId }) => {
           className="button black-button"
         />
       </form>
-    <TradeNewPhoto user={ user }/>
+    {/* <TradeNewPhoto user={ user }/> */}
     </div>
   );
 

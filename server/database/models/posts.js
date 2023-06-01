@@ -21,8 +21,8 @@ const Posts = db.define("posts", {
     allowNull: false
   },
   pictures: {
-    type: DataTypes.BLOB,
-    // allowNull: false
+    type: DataTypes.STRING,
+    allowNull: false
   },
   price: {
     type: DataTypes.STRING,

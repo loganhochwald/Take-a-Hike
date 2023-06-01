@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-const TradeNewPhoto = ({ postTexts, user }) => {
+const TradeNewPhoto = ({ postTexts, user, uploadedPhoto, setUploadedPhoto }) => {
 
-  // My specific presets, need to hide from client side using dotenv-webpack plugin
+  // Specific presets, using dotenv-webpack plugin. When there's time need to convert this to a server-side request for security
 const cloudName = process.env.CLOUDINARY_NAME;
 const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET;
-console.log(cloudName, uploadPreset)
+// console.log(cloudName, uploadPreset)
 
-
-  const [uploadedPhoto, setUploadedPhoto] = useState(null);
 
   const showWidget = () => {
     const myWidget = window.cloudinary.createUploadWidget(
       {
         cloudName: cloudName,
         uploadPreset: uploadPreset,
-        maxFiles: 3,
+        maxFiles: 1,
         folder: "trade_images",
         tags: [`user:${user._id}`],
         maxImageFileSize: 2000000,
@@ -23,7 +22,7 @@ console.log(cloudName, uploadPreset)
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log("Image posted to cloudify: ", result.info);
+          // console.log("Image posted to cloudify: ", result.info);
           setUploadedPhoto(result.info.secure_url);
         }
       }
@@ -31,17 +30,12 @@ console.log(cloudName, uploadPreset)
     myWidget.open();
   };
 
-  // style={{ width: '250px' }}
-
   return (
-    <div>
-      {uploadedPhoto && (
-        <img src={uploadedPhoto} />
-      )}
-
-      <button id="upload-cloudify-button" onClick={ showWidget }>Upload Trade Images</button>
-    </div>
+    uploadedPhoto ? <img src={uploadedPhoto} width="80" height="80" style={{ marginRight: "8px" }} /> :
+    <AddPhotoAlternateIcon style={{ marginRight: "8px"}} sx={{ fontSize: 80, ":hover": {cursor: "pointer", }, }} onClick={showWidget} />
   );
+
 };
+
 
 export default TradeNewPhoto;
