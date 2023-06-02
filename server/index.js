@@ -130,6 +130,8 @@ app.get('/user', async (req, res) => {
     res.status(500).send(error);
   }
 });
+
+
 ////////////////////////////////////////EXTERNAL TRAIL API ROUTE/////////////////////////////////////////
 
 //GET req for trail data by latitude/longitude

@@ -53,7 +53,7 @@ const TradingNewPost = ({ userId }) => {
   const getUserObj = () => {
     axios.get("/user").then((response) => {
       const user = response.data;
-      console.log(user);
+      // console.log(user);
       setUser(user);
     })
     .catch((error) => {

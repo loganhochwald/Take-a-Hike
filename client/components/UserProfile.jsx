@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState, } from "react";
 import { useParams } from 'react-router-dom';
 
+import MapBox from '../components/TradingPost/MapBox.jsx'
+
 
 const UserProfile = ({ setUserId }) => {
   const [profileName, setProfileName] = useState("");
@@ -29,6 +31,7 @@ const UserProfile = ({ setUserId }) => {
       <form action="/logout" method="POST">
         <button type="submit">Logout</button>
       </form>
+      <MapBox />
     </div>
   );
 
