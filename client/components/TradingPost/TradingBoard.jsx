@@ -6,7 +6,7 @@ import TradingBoardEntry from '../TradingPost/TradingBoardEntry.jsx';
 
 const TradingBoard = () => {
 
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([]);
 
 
   useEffect(() => {

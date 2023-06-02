@@ -4,18 +4,21 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import TradeNewPhoto from './TradeNewPhoto.jsx';
+import MapBox from './MapBox.jsx';
 
 
-const TradingNewPost = ({ userId }) => {
+const TradingNewPost = ({ userId, lng, lat }) => {
 
   const navigate = useNavigate();
 
+  const [lng, setLng] = useState(-70.9);
+  const [lat, setLat] = useState(42.35);
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
   const [user, setUser] = useState(null);
 
 
   const [postTexts, setPostTexts]
-  = useState({ title: '', location: '', description: '', price: '' });
+  = useState({ title: '', location: '', description: '', price: '', lng: '', lat: '' });
 
   const handlePostInput = (e) => {
     const { name, value } = e.target;
@@ -143,6 +146,11 @@ const TradingNewPost = ({ userId }) => {
           className="button black-button"
         />
       </form>
+      <div className='list-item-card'>
+      <div className="map-container">
+      <MapBox />
+      </div>
+    </div>
     </div>
   );
 
