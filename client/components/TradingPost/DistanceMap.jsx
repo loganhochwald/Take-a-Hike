@@ -7,47 +7,68 @@ mapboxgl.accessToken = '';
 const DistanceMap = ({ post }) => {
   const [travelTime, setTravelTime] = useState(null);
 
-  // rendering the map to the page
+  // the getDirectionsMap needs to know what the const map variable is to be able to set markers which is why I put it all in the useEffect and called
+  // it within the same useEffect
   useEffect(() => {
-    const map = new mapboxgl.Map({
-      container: 'map-container',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [post.lng, post.lat], //[lng, lat]
-      zoom: 12
-    });
 
-    // having a marker for both the origin and the destination
-    const originMarker = new mapboxgl.Marker().setLngLat([-90.051800, 29.974180]).addTo(map);
-    const destinationMarker = new mapboxgl.Marker().setLngLat([-90.052139, 29.963261]).addTo(map);
-
-    // creating the mapbox api request, it's origin { lng, lat } then destination
-    const directionsUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${-90.051800},${29.974180};${post.lng},${post.lat}?access_token=${mapboxgl.accessToken}`;
-
-    // sending the mapbox request and then calculating the driving time in minutes
-    axios
-      .get(directionsUrl)
-      .then((res) => {
-        const route = res.data.routes[0];
-        const travelTime = route.duration / 60;
-        setTravelTime(travelTime);
-      })
-      .catch(error => {
-        console.error('Could not get the directions :(', error);
+    const getDirectionsMap = async () => {
+      const map = new mapboxgl.Map({
+        container: 'map-container',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [post.lng, post.lat],
+        zoom: 12
       });
+
+      // sets the destination marker as the location of the post's longitude and latitude
+      const destinationMarker = new mapboxgl.Marker().setLngLat([post.lng, post.lat]).addTo(map);
+
+      try {
+        // calling the geolocator to get the user's position, waiting for a response before making an api call to get the directions time
+        const userPosition = await getUserPosition();
+        const origin = [userPosition.coords.longitude, userPosition.coords.latitude];
+
+        // setting the origin marker as the location of the user if the origin exists (user allowed site to access location)
+        // also calculating the distance if we have the origin location
+        if (origin) {
+          const originMarker = new mapboxgl.Marker().setLngLat(origin).addTo(map);
+          const directionsUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${origin[0]},${origin[1]};${post.lng},${post.lat}?access_token=${mapboxgl.accessToken}`;
+
+          const response = await axios.get(directionsUrl);
+          const route = response.data.routes[0];
+          const travelTime = route.duration / 60;
+          setTravelTime(travelTime);
+        }
+
+      } catch (error) {
+        console.error('Could not get the directions :(', error);
+      }
+    };
+
+    // need to call this function now so it can do its thang
+    getDirectionsMap();
 
     return () => {
       map.remove();
     };
   }, []);
 
+  // have to use success and error because it returns a callback function not an object
+  const getUserPosition = () => {
+    return new Promise((successCB, errorCB) => {
+      navigator.geolocation.getCurrentPosition(successCB, errorCB);
+    });
+  };
+
+  // does not render the travel time if it does not exist
   return (
     <div>
       <div id="map-container" style={{ height: '400px' }}></div>
-      {travelTime && (
+      {travelTime !== null ? (
         <p>It takes {Math.round(travelTime)} minutes to drive there</p>
+      ) : (
+        <p>Allow access to location to view driving travel time to trade location!</p>
       )}
     </div>
-  );
-};
+  );};
 
 export default DistanceMap;
