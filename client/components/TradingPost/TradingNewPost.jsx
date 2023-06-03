@@ -18,7 +18,10 @@ const TradingNewPost = ({ userId, }) => {
 
 
   const [postTexts, setPostTexts]
-  = useState({ title: '', location: '', description: '', price: '', });
+  = useState({ title: '', description: '', price: '', });
+
+  // took out location when added the mapbox function
+  //location: '',
 
   const handlePostInput = (e) => {
     const { name, value } = e.target;
@@ -45,10 +48,11 @@ const TradingNewPost = ({ userId, }) => {
       // Reset the form instead of refreshing the page
       setPostTexts({
         title: '',
-        location: '',
+        // location: '',
         description: '',
         price: '',
       });
+      setUploadedPhoto(null);
     } catch (error) {
       console.error("Could not submit new post", error);
     }
@@ -91,7 +95,7 @@ const TradingNewPost = ({ userId, }) => {
           </div>
         </div>
 
-        <div className="field">
+        {/* <div className="field">
           <label className="label">Meetup Location</label>
           <div className="control">
             <input
@@ -103,7 +107,7 @@ const TradingNewPost = ({ userId, }) => {
               name="location"
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="field">
           <label className="label">Price</label>
