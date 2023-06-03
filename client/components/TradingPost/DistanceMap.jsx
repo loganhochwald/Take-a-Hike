@@ -47,9 +47,9 @@ const DistanceMap = ({ post }) => {
     // need to call this function now so it can do its thang
     getDirectionsMap();
 
-    return () => {
-      map.remove();
-    };
+    // return () => {
+    //   map.remove();
+    // };
   }, []);
 
   // have to use success and error because it returns a callback function not an object

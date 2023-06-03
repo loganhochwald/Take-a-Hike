@@ -12,11 +12,12 @@ const TradeDisplay = () => {
     <div className="trade-and-distance-map">
 
     <div className='list-item-card'>
-      <img src={post.pictures} style={{ width: '400px', height: '400px' }} />
       <div>
         <h1>{post.title}</h1>
-        <h2>Price: {post.price}</h2>
-        <p>Location: {post.location}</p>
+        <img src={post.pictures} style={{ width: '400px', height: '400px' }} />
+        <h2>Price: ${post.price}</h2>
+        <br></br>
+        <h2>Description</h2>
         <p>{post.description}</p>
       </div>
     </div>

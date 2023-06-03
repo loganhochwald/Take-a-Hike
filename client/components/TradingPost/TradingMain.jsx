@@ -14,7 +14,7 @@ const TradingMain = () => {
       </h3>
       <div className="content has-text-centered">
       <Link to='/tradingpost/tradingboard'>Trading Board</Link> |{' '}
-      <Link to='/tradingpost/createtrade'>Create New Post</Link>
+      <Link to='/tradingpost/createtrade'>Post New Trade</Link>
       </div>
         <Outlet />
     </div>
