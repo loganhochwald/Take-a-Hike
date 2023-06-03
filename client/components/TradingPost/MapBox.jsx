@@ -3,8 +3,8 @@ import React, { useRef, useEffect, useState, useCallback } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { AddressAutofill, AddressMinimap, config } from '@mapbox/search-js-react';
 
-// Make sure you have this because I can't get it to work without putting it twice
-mapboxgl.accessToken = 'pk.eyJ1IjoibG9nYW5ob2Nod2FsZCIsImEiOiJjbGk5amVxNjkxMm1pM2VxaGdvMGJqbWdsIn0.NAR7i7vhdEgGB7FCiWOzIw';
+// Again, not safe, but having trouble setting up server side and I'm running out of time sorry!! This is not secure!!!!!
+mapboxgl.accessToken = process.env.MAPBOX_API_KEY;
 
 const MapBox = ({ setLng, setLat }) => {
 
@@ -20,9 +20,6 @@ const MapBox = ({ setLng, setLat }) => {
 
   // when the page loads, render a new map with the options listed below
   useEffect(() => {
-    const accessToken = 'pk.eyJ1IjoibG9nYW5ob2Nod2FsZCIsImEiOiJjbGk5amVxNjkxMm1pM2VxaGdvMGJqbWdsIn0.NAR7i7vhdEgGB7FCiWOzIw';
-    setToken(accessToken);
-    config.accessToken = accessToken;
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
