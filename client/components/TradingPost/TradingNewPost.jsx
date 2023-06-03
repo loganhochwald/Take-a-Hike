@@ -7,25 +7,25 @@ import TradeNewPhoto from './TradeNewPhoto.jsx';
 import MapBox from './MapBox.jsx';
 
 
-const TradingNewPost = ({ userId, lng, lat }) => {
+const TradingNewPost = ({ userId, }) => {
 
   const navigate = useNavigate();
 
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
+  const [lng, setLng] = useState(-90.052140);
+  const [lat, setLat] = useState(29.963260);
   const [uploadedPhoto, setUploadedPhoto] = useState(null);
   const [user, setUser] = useState(null);
 
 
   const [postTexts, setPostTexts]
-  = useState({ title: '', location: '', description: '', price: '', lng: '', lat: '' });
+  = useState({ title: '', location: '', description: '', price: '', });
 
   const handlePostInput = (e) => {
     const { name, value } = e.target;
     setPostTexts((postTexts) => {
       return { ...postTexts, [name]: value, };
     });
-    // console.log(postTexts)
+    // console.log(lng, lat)
   };
 
   const handlePostSubmit = async (e) => {
@@ -148,7 +148,7 @@ const TradingNewPost = ({ userId, lng, lat }) => {
       </form>
       <div className='list-item-card'>
       <div className="map-container">
-      <MapBox />
+      <MapBox setLat={ setLat } setLng={ setLng }/>
       </div>
     </div>
     </div>
