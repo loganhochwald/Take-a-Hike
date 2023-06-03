@@ -4,7 +4,7 @@ import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-load
 
 mapboxgl.accessToken = '';
 
-const DistanceMap = () => {
+const DistanceMap = ({ post }) => {
   const [travelTime, setTravelTime] = useState(null);
 
   // rendering the map to the page
@@ -12,7 +12,7 @@ const DistanceMap = () => {
     const map = new mapboxgl.Map({
       container: 'map-container',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-90.052139, 29.974180],
+      center: [post.lng, post.lat], //[lng, lat]
       zoom: 12
     });
 
@@ -20,8 +20,8 @@ const DistanceMap = () => {
     const originMarker = new mapboxgl.Marker().setLngLat([-90.051800, 29.974180]).addTo(map);
     const destinationMarker = new mapboxgl.Marker().setLngLat([-90.052139, 29.963261]).addTo(map);
 
-    // creating the mapbox api request
-    const directionsUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${-90.051800},${29.974180};${-90.052139},${29.963261}?access_token=${mapboxgl.accessToken}`;
+    // creating the mapbox api request, it's origin { lng, lat } then destination
+    const directionsUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${-90.051800},${29.974180};${post.lng},${post.lat}?access_token=${mapboxgl.accessToken}`;
 
     // sending the mapbox request and then calculating the driving time in minutes
     axios

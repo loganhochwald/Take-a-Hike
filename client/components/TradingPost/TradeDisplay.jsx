@@ -17,7 +17,7 @@ const TradeDisplay = () => {
         <p>Location: {post.location}</p>
         <p>{post.description}</p>
       </div>
-      <DistanceMap />
+      <DistanceMap post={ post }/>
     </div>
   );
 }
