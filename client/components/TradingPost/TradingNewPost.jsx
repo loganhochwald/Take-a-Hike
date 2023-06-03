@@ -53,6 +53,7 @@ const TradingNewPost = ({ userId, }) => {
         price: '',
       });
       setUploadedPhoto(null);
+      navigate('/tradingpost/tradingboard');
     } catch (error) {
       console.error("Could not submit new post", error);
     }
