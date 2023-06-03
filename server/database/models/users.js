@@ -29,14 +29,6 @@ const Users = db.define("users", {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  lat: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  lng: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  }
 });
 
 

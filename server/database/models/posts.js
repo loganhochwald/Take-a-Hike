@@ -28,6 +28,14 @@ const Posts = db.define("posts", {
     type: DataTypes.STRING,
     allowNull: false
   },
+  lat: {
+    type: DataTypes.DECIMAL(9, 6),
+    allowNull: false
+  },
+  lng: {
+    type: DataTypes.DECIMAL(9, 6),
+    allowNull: false
+  },
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false,

@@ -4,7 +4,7 @@ import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-load
 import { AddressAutofill, AddressMinimap, config } from '@mapbox/search-js-react';
 
 // Make sure you have this because I can't get it to work without putting it twice
-mapboxgl.accessToken = '';
+mapboxgl.accessToken = 'pk.eyJ1IjoibG9nYW5ob2Nod2FsZCIsImEiOiJjbGk5amVxNjkxMm1pM2VxaGdvMGJqbWdsIn0.NAR7i7vhdEgGB7FCiWOzIw';
 
 const MapBox = ({ setLng, setLat }) => {
 
@@ -20,7 +20,7 @@ const MapBox = ({ setLng, setLat }) => {
 
   // when the page loads, render a new map with the options listed below
   useEffect(() => {
-    const accessToken = '';
+    const accessToken = 'pk.eyJ1IjoibG9nYW5ob2Nod2FsZCIsImEiOiJjbGk5amVxNjkxMm1pM2VxaGdvMGJqbWdsIn0.NAR7i7vhdEgGB7FCiWOzIw';
     setToken(accessToken);
     config.accessToken = accessToken;
 
