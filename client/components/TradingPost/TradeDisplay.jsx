@@ -9,6 +9,8 @@ const TradeDisplay = () => {
 
   //THE LOCATION MAP WILL NEED TO BE PLACED NEXT TO THIS SO THE CARD IS ON THE LEFT AND THE MAP IS ON THE RIGHT
   return (
+    <div className="trade-and-distance-map">
+
     <div className='list-item-card'>
       <img src={post.pictures} style={{ width: '400px', height: '400px' }} />
       <div>
@@ -17,7 +19,10 @@ const TradeDisplay = () => {
         <p>Location: {post.location}</p>
         <p>{post.description}</p>
       </div>
+    </div>
+    <div className='list-item-card'>
       <DistanceMap post={ post }/>
+      </div>
     </div>
   );
 }

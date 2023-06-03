@@ -64,7 +64,7 @@ const DistanceMap = ({ post }) => {
     <div>
       <div id="map-container" style={{ height: '400px' }}></div>
       {travelTime !== null ? (
-        <p>It takes {Math.round(travelTime)} minutes to drive there</p>
+        <p>It'll take you {Math.round(travelTime)} minutes to drive there</p>
       ) : (
         <p>Allow access to location to view driving travel time to trade location!</p>
       )}
