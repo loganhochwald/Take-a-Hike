@@ -35,6 +35,8 @@ const TradingNewPost = ({ userId, }) => {
       const newPost = {
         ...postTexts,
         pictures: uploadedPhoto,
+        lat: lat,
+        lng: lng,
       };
 
       await axios.post('/trading', newPost);
