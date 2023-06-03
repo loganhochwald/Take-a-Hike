@@ -12,12 +12,17 @@ const TradingBoardEntry = ({ post }) => {
 
   return (
     <div className='list-item-card' style={{ margin: '10px' }}>
-      <img src={thisPost.pictures} width="30px" height="30px"onClick={handleImageClick}style={{ cursor: 'pointer' }}/>
-      <Link to={link} state={{ thisPost: thisPost }} style={{ color: '#4a4a4a' }}className="link">{post.title}</Link>
+      <img
+        src={thisPost.pictures}
+        onClick={handleImageClick}
+        style={{ cursor: 'pointer', width: '100%', height: 'auto' }}
+      />
+      <Link to={link} state={{ thisPost: thisPost }} style={{ color: '#4a4a4a' }} className="link">
+        {post.title}
+      </Link>
       <h2>${thisPost.price}</h2>
       <Outlet />
     </div>
-  );
-};
+  );};
 
 export default TradingBoardEntry;
