@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import DistanceMap from './DistanceMap.jsx';
 
 const TradeDisplay = () => {
   const location = useLocation();
@@ -16,6 +17,7 @@ const TradeDisplay = () => {
         <p>Location: {post.location}</p>
         <p>{post.description}</p>
       </div>
+      <DistanceMap />
     </div>
   );
 }
