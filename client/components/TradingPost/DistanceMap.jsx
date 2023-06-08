@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
-mapboxgl.accessToken = process.env.MAPBOX_API_KEY;
+mapboxgl.accessToken = 'pk.eyJ1IjoibG9nYW5ob2Nod2FsZCIsImEiOiJjbGk5amVxNjkxMm1pM2VxaGdvMGJqbWdsIn0.NAR7i7vhdEgGB7FCiWOzIw';
 
 const DistanceMap = ({ post }) => {
   const [travelTime, setTravelTime] = useState(null);

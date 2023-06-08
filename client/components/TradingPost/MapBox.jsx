@@ -4,14 +4,14 @@ import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-load
 import { AddressAutofill, AddressMinimap, config } from '@mapbox/search-js-react';
 
 // Again, not safe, but having trouble setting up server side and I'm running out of time sorry!! This is not secure!!!!!
-mapboxgl.accessToken = process.env.MAPBOX_API_KEY;
+mapboxgl.accessToken = 'pk.eyJ1IjoibG9nYW5ob2Nod2FsZCIsImEiOiJjbGk5amVxNjkxMm1pM2VxaGdvMGJqbWdsIn0.NAR7i7vhdEgGB7FCiWOzIw';
 
 const MapBox = ({ setLng, setLat }) => {
 
 
   const [showMinimap, setShowMinimap] = useState(false);
   const [feature, setFeature] = useState();
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState('pk.eyJ1IjoibG9nYW5ob2Nod2FsZCIsImEiOiJjbGk5amVxNjkxMm1pM2VxaGdvMGJqbWdsIn0.NAR7i7vhdEgGB7FCiWOzIw');
   const [markerLocation, setMarkerLocation] = useState(null);
 
   const mapContainer = useRef(null);
