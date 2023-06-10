@@ -1,8 +1,8 @@
 // Import Dependencies
 import React, { useState, useEffect } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
+
 
 // import './styles/main.css';
 import TrailsList from './TrailsList.jsx';
@@ -10,7 +10,6 @@ import Quartermaster from './Quartermaster.jsx';
 import TrailProfile from './TrailProfile.jsx';
 import UserProfile from './UserProfile.jsx';
 import BirdingCheckList from './BirdingCheckList.jsx';
-import PackingList from './PackingList.jsx';
 import Login from './Login.jsx';
 
 import TradingMain from '../components/TradingPost/TradingMain.jsx';

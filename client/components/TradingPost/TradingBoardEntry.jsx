@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, Link, Outlet, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 const TradingBoardEntry = ({ post }) => {
   const [thisPost, setThisPost] = useState(post);

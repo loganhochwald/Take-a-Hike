@@ -7,7 +7,7 @@ import TradeNewPhoto from './TradeNewPhoto.jsx';
 import MapBox from './MapBox.jsx';
 
 
-const TradingNewPost = ({ userId, }) => {
+const TradingNewPost = () => {
 
   const navigate = useNavigate();
 

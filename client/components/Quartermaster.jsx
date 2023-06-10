@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, Outlet } from "react-router-dom";
-import PackingList from "./PackingList.jsx";
+// import PackingList from "./PackingList.jsx";
 //mport UserProfile from "./UserProfile.jsx";
 
 const Quartermaster = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const TradeNewPhoto = ({ postTexts, user, uploadedPhoto, setUploadedPhoto }) => {

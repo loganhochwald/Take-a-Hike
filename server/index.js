@@ -1,7 +1,6 @@
 // Import Dependencies
-const axios = require('axios');
+// const axios = require('axios');
 const sequelize = require('sequelize');
-const { query } = require('express');
 const express = require('express');
 const path = require('path');
 const passport = require('passport');
@@ -12,10 +11,9 @@ const { BirdSightings } = require("./database/models/birdSightings.js")
 const { PackingLists } = require("./database/models/packingLists");
 const { PackingListItems } = require("./database/models/packingListItems");
 
-const router = express.Router();
+// const router = express.Router();
 const session = require('express-session');
 require('./middleware/auth.js');
-const { cloudinary } = require('./utils/coudinary');
 const { Users } = require('./database/models/users');
 
 // // Import session storage
@@ -160,26 +158,26 @@ app.get("/api/trailslist", (req, res) => {
 //////////////////////////////////////// Cloudinary routes //////////////////////////////////////
 
 // get request to get all images (this will later be trail specific)
-app.post("/api/images", async (req, res) => {
-  console.log(`server index.js || LINE 70`, req.body);
-  // NEED TO CHANGE ENDPOINT TO INCLUDE TRAIL SPECIFIC PARAM SO PHOTOS CAN BE UPLOADED + RENDERED PROPERLY
+// app.post("/api/images", async (req, res) => {
+//   console.log(`server index.js || LINE 70`, req.body);
+//   // NEED TO CHANGE ENDPOINT TO INCLUDE TRAIL SPECIFIC PARAM SO PHOTOS CAN BE UPLOADED + RENDERED PROPERLY
 
-  // Can create new folder with upload from TrailProfile component. Need to modify get request to filter based on folder param (which will be equal to the trail name)
-  const resources = await cloudinary.search
-    .expression(`resource_type:image AND folder:${req.body.trailFolderName}/*`)
-    .sort_by('created_at', 'desc')
-    .max_results(30)
-    .execute();
-  // console.log(
-  //   'SERVER INDEX.JS || CLOUDINARY GET || LINE 38 || resources ==>',
-  //   resources
-  // ;
-  // try to filter before map
-  const secureImageUrls = resources.resources
-    .filter((imageObj) => imageObj.folder === req.body.trailFolderName)
-    .map((image) => image.secure_url);
-  res.json(secureImageUrls);
-});
+//   // Can create new folder with upload from TrailProfile component. Need to modify get request to filter based on folder param (which will be equal to the trail name)
+//   const resources = await cloudinary.search
+//     .expression(`resource_type:image AND folder:${req.body.trailFolderName}/*`)
+//     .sort_by('created_at', 'desc')
+//     .max_results(30)
+//     .execute();
+//   // console.log(
+//   //   'SERVER INDEX.JS || CLOUDINARY GET || LINE 38 || resources ==>',
+//   //   resources
+//   // ;
+//   // try to filter before map
+//   const secureImageUrls = resources.resources
+//     .filter((imageObj) => imageObj.folder === req.body.trailFolderName)
+//     .map((image) => image.secure_url);
+//   res.json(secureImageUrls);
+// });
 
 /**
  * Routes for packing list
