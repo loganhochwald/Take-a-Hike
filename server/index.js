@@ -58,8 +58,8 @@ app.use(passport.initialize()); //passport is used on every call
 app.use(passport.session());  //passport uses express-session
 
 
-const successLoginUrl = 'http://localhost:5555/#/profile';
-const errorLoginUrl = 'http://localhost:5555/login/error';
+const successLoginUrl = '/profile';
+const errorLoginUrl = '/error';
 
 //Auth Routes
 app.get(
